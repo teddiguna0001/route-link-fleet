@@ -72,11 +72,11 @@ function FleetCrew() {
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <Metric
           label="Vehicles tracked"
-          value={FLEET_INVENTORY.length}
+          value={buses.length}
           tone="primary"
           icon={<BatteryCharging className="h-5 w-5" strokeWidth={2.4} />}
         />
-        <Metric label="Standby pool" value={available} tone="secondary" delta="Ready for recovery" />
+        <Metric label="Available pool" value={available} tone="secondary" delta="Assignable right now" />
         <Metric
           label="In workshop"
           value={workshop}
