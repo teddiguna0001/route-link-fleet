@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as DisruptionsRouteImport } from './routes/disruptions'
 import { Route as FleetRouteImport } from './routes/fleet'
+import { Route as MapRouteImport } from './routes/map'
 import { Route as OptimizerRouteImport } from './routes/optimizer'
 import { Route as ScheduleRouteImport } from './routes/schedule'
 
@@ -36,6 +37,11 @@ const FleetRoute = FleetRouteImport.update({
   path: '/fleet',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OptimizerRoute = OptimizerRouteImport.update({
   id: '/optimizer',
   path: '/optimizer',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/analytics': typeof AnalyticsRoute
   '/disruptions': typeof DisruptionsRoute
   '/fleet': typeof FleetRoute
+  '/map': typeof MapRoute
   '/optimizer': typeof OptimizerRoute
   '/schedule': typeof ScheduleRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/analytics': typeof AnalyticsRoute
   '/disruptions': typeof DisruptionsRoute
   '/fleet': typeof FleetRoute
+  '/map': typeof MapRoute
   '/optimizer': typeof OptimizerRoute
   '/schedule': typeof ScheduleRoute
 }
@@ -69,22 +77,36 @@ export interface FileRoutesById {
   '/analytics': typeof AnalyticsRoute
   '/disruptions': typeof DisruptionsRoute
   '/fleet': typeof FleetRoute
+  '/map': typeof MapRoute
   '/optimizer': typeof OptimizerRoute
   '/schedule': typeof ScheduleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/analytics' | '/disruptions' | '/fleet' | '/optimizer' | '/schedule'
+    | '/'
+    | '/analytics'
+    | '/disruptions'
+    | '/fleet'
+    | '/map'
+    | '/optimizer'
+    | '/schedule'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/analytics' | '/disruptions' | '/fleet' | '/optimizer' | '/schedule'
+    | '/'
+    | '/analytics'
+    | '/disruptions'
+    | '/fleet'
+    | '/map'
+    | '/optimizer'
+    | '/schedule'
   id:
     | '__root__'
     | '/'
     | '/analytics'
     | '/disruptions'
     | '/fleet'
+    | '/map'
     | '/optimizer'
     | '/schedule'
   fileRoutesById: FileRoutesById
@@ -94,6 +116,7 @@ export interface RootRouteChildren {
   AnalyticsRoute: typeof AnalyticsRoute
   DisruptionsRoute: typeof DisruptionsRoute
   FleetRoute: typeof FleetRoute
+  MapRoute: typeof MapRoute
   OptimizerRoute: typeof OptimizerRoute
   ScheduleRoute: typeof ScheduleRoute
 }
@@ -128,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FleetRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/optimizer': {
       id: '/optimizer'
       path: '/optimizer'
@@ -150,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnalyticsRoute: AnalyticsRoute,
   DisruptionsRoute: DisruptionsRoute,
   FleetRoute: FleetRoute,
+  MapRoute: MapRoute,
   OptimizerRoute: OptimizerRoute,
   ScheduleRoute: ScheduleRoute,
 }

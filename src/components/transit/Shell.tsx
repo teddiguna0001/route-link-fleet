@@ -6,6 +6,7 @@ import {
   CalendarRange,
   ChartNoAxesColumn,
   CircuitBoard,
+  Map as MapIcon,
   Menu,
   ShieldAlert,
   Users,
@@ -15,6 +16,7 @@ import { cn } from "@/lib/utils";
 
 const NAV = [
   { to: "/", label: "Operations", icon: Activity, code: "OPS" },
+  { to: "/map", label: "Route Map", icon: MapIcon, code: "MAP" },
   { to: "/schedule", label: "Scheduling", icon: CalendarRange, code: "SCH" },
   { to: "/fleet", label: "Fleet & Crew", icon: Users, code: "FLT" },
   { to: "/disruptions", label: "Disruptions", icon: ShieldAlert, code: "DSR" },
