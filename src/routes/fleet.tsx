@@ -90,45 +90,7 @@ function FleetCrew() {
       </div>
 
       {tab === "fleet" ? (
-        <Panel title="Vehicle inventory" hint="Live state of charge / fuel, odometer and next inspection.">
-          <DataTable
-            head={
-              <>
-                <Th>Registration</Th>
-                <Th>Type</Th>
-                <Th>Depot</Th>
-                <Th className="w-40">Charge / fuel</Th>
-                <Th className="text-right">Odometer</Th>
-                <Th>Assignment</Th>
-                <Th>Status</Th>
-              </>
-            }
-          >
-            {FLEET_INVENTORY.map((v) => (
-              <tr key={v.id} className="transition-colors duration-200 hover:bg-muted">
-                <Td>
-                  <p className="num font-semibold">{v.regNumber}</p>
-                  <p className="text-xs text-muted-foreground">{v.model}</p>
-                </Td>
-                <Td className="text-muted-foreground">{v.type}</Td>
-                <Td className="text-muted-foreground">{v.depot}</Td>
-                <Td>
-                  <p className="num text-sm font-semibold">{v.socOrFuelPct}%</p>
-                  <Meter
-                    value={v.socOrFuelPct}
-                    tone={v.socOrFuelPct < 25 ? "destructive" : v.socOrFuelPct < 55 ? "accent" : "secondary"}
-                    className="mt-1.5"
-                  />
-                </Td>
-                <Td className="num text-right">{v.odometerKm.toLocaleString("en-IN")}</Td>
-                <Td className="text-muted-foreground">{v.currentAssignment ?? "—"}</Td>
-                <Td>
-                  <Pill tone={fleetTone(v.status)}>{v.status}</Pill>
-                </Td>
-              </tr>
-            ))}
-          </DataTable>
-        </Panel>
+        <BusManager />
       ) : (
         <Panel title="Crew roster" hint="Weekly hours, spreadover and licence validity under CMVR rules.">
           <DataTable
