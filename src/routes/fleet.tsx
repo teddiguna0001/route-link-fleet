@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { BatteryCharging, IdCard, Wrench } from "lucide-react";
 import {
   DataTable,
@@ -11,8 +12,10 @@ import {
   Td,
   Th,
 } from "@/components/transit/primitives";
-import { crewTone, fleetTone } from "@/lib/transit-ui";
-import { CREW_ROSTER, FLEET_INVENTORY } from "@/data/transitData";
+import { BusManager } from "@/components/transit/BusManager";
+import { busesQueryKey, fetchBuses } from "@/lib/fleet-api";
+import { crewTone } from "@/lib/transit-ui";
+import { CREW_ROSTER } from "@/data/transitData";
 
 export const Route = createFileRoute("/fleet")({
   head: () => ({
