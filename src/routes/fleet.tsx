@@ -39,10 +39,10 @@ export const Route = createFileRoute("/fleet")({
 function FleetCrew() {
   const [tab, setTab] = useState<"fleet" | "crew">("fleet");
 
-  const available = FLEET_INVENTORY.filter((v) => v.status === "Standby").length;
-  const workshop = FLEET_INVENTORY.filter(
-    (v) => v.status === "Scheduled Maintenance" || v.status === "Breakdown",
-  ).length;
+  const { data: buses = [] } = useQuery({ queryKey: busesQueryKey, queryFn: fetchBuses });
+
+  const available = buses.filter((b) => b.status === "AVAILABLE").length;
+  const workshop = buses.filter((b) => b.status === "MAINTENANCE").length;
   const restCrew = CREW_ROSTER.filter((c) => c.status === "Rest Period").length;
   const overSpread = CREW_ROSTER.filter((c) => c.dailySpreadoverHours > 11).length;
 
